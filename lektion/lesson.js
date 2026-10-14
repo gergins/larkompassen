@@ -8,7 +8,7 @@ const map={1:[{s:"Matematik",title:"Tiokompisar",ex:"6 + 4 = 10. Använd fingrar
 function safe(x){return String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 if(goalIndex===null&&(!Number.isInteger(year)||year<2020||year>2100||!Number.isInteger(week)||week<1||week>53)){root.textContent="Ogiltig vecka.";return}
 const lesson=map[grade][goalIndex===null?((week-1)%map[grade].length):goalIndex],id=goalIndex===null?year+"-W"+String(week).padStart(2,"0")+"-ak"+grade:"goal-"+grade+"-"+goal;
-const practiceCount=(()=>{try{const v=JSON.parse(localStorage.getItem("lk-practice-settings-v1")||"{}");const n=Number(v[grade]);return [2,5,10,20,30].includes(n)?n:10}catch{return 10}})();
+const practiceCount=(()=>{const fromLink=Number(q.get("antal"));if([2,5,10,20,30].includes(fromLink))return fromLink;try{const v=JSON.parse(localStorage.getItem("lk-practice-settings-v1")||"{}");const n=Number(v[grade]);return [2,5,10,20,30].includes(n)?n:10}catch{return 10}})();
 const lessonIndex=goalIndex===null?((week-1)%map[grade].length):goalIndex;
 function arithmeticTasks(n){
  const out=[],seen=new Set();
