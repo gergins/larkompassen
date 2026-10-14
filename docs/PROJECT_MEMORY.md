@@ -60,3 +60,11 @@ Implementerat på /foralder/ med tre interaktiva flikar:
 - Behåller lokal PIN-kod och visar integritets- och säkerhetsbegränsningar. Inga privata data skickas till publikt GitHub. Test av JavaScript-syntax lyckades, men publicerad browser-E2E och funktionstest återstår.
 - Ingen uppdatering av befintliga Original-övningar. Ingen synk mellan enheter, lösenordsåterställning eller riktig serverautentisering. E-postinloggning är beslutad som senare version.
 Nästa: verifiera webbläsarflöde på Pages, prova PIN och två barns sessioner, event-schema för ledtråd per fråga, och förälders möjlighet att dela tilldelningar till barnens enheter när säker autentisering införts.
+
+
+## Lgr22-orientering för familjen — 2026-10-14
+- Delad innehållsmodell i curriculum.js: pedagogiska sammanfattningar av utvalda kursplaneområden med nivåanpassade föräldratexter och barntexter, hemaktiviteter och nästa steg.
+- Föräldraläge: expanderbara kursplanskopplade texter under Kunskaper och Planering. Detta är separerat från faktisk resultatstatistik och säger inte att barnet uppnått visst mål.
+- Barnläge: /laromraden/?ak=1 och ?ak=5, länkat från elevportalernas startsidor. Samma undervisningsmål uttryckta enkelt för barnen.
+- Dessa exempel är inte fullständig läroplanstäckning och är inte Skolverkets veckoplan. Tillagd struktur kan senare utökas ämne för ämne; källhänvisning per område behöver förbättras.
+- Verifierat: GitHub-commits och JavaScript-syntax. Publicerad end-to-end-kontroll återstår. Befintliga Original-övningar och lokal PIN kvarstår.
