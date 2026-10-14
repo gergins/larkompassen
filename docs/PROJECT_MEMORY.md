@@ -68,3 +68,10 @@ Nästa: verifiera webbläsarflöde på Pages, prova PIN och två barns sessioner
 - Barnläge: /laromraden/?ak=1 och ?ak=5, länkat från elevportalernas startsidor. Samma undervisningsmål uttryckta enkelt för barnen.
 - Dessa exempel är inte fullständig läroplanstäckning och är inte Skolverkets veckoplan. Tillagd struktur kan senare utökas ämne för ämne; källhänvisning per område behöver förbättras.
 - Verifierat: GitHub-commits och JavaScript-syntax. Publicerad end-to-end-kontroll återstår. Befintliga Original-övningar och lokal PIN kvarstår.
+
+
+## Direkta länkar från lärandemål till övning — 2026-10-14
+- Lärandekartans knappar länkar nu till /lektion/?ak=1|5&goal=<mål-id> för mål som har en passande första övning. Barnet slipper gå via ämnesöversikten.
+- Delad lektionsmotor stöder mål-id för ett urval mål utan att veckokartans year/week-länkar ändras. För mål utan matchande övning står det tydligt 'Övning kommer senare'.
+- Observera att kopplingarna är pedagogiskt ungefärliga: exempelvis 'Tal och de fyra räknesätten' öppnar tiokompisar, inte fullständig undervisning i alla fyra räknesätt. En fullständig mål-till-lektion-katalog med täckningsstatus återstår.
+- Källkod och JS-syntax verifierade; publicerad E2E-kontroll återstår.
