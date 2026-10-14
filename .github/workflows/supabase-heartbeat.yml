@@ -1,0 +1,22 @@
+name: Supabase availability heartbeat
+on:
+  schedule:
+    # Spread outside of top-of-hour congestion; best-effort schedules.
+    - cron: "17 6,14,22 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Query isolated monitoring marker
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: node scripts/supabase-heartbeat.mjs
