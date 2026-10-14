@@ -44,7 +44,7 @@ const subjectGuides={
     "Matematik":[["Tal och begrepp","Förstå tal, antal och enkla samband.","Tiokompisar","math-number"],["Metoder och resonemang","Räkna, pröva och beskriva hur en lösning fungerar.","Addition","math-number"]],
     "Svenska":[["Läsa och förstå","Koppla bokstav och ljud, läsa enkla ord och samtala om innehåll.","Bokstäver","swedish-reading"],["Skriva och kommunicera","Skriva ord och meningar och berätta så andra förstår.","Bokstäver","swedish-reading"]],
     "Engelska":[["Ord och uttryck","Förstå ord och fraser i vardagliga situationer – reception enligt Lgr22 åk 1–3.","Engelska i vardagen","english-everyday"],["Lyssna och tala","Förstå enkelt tal och prova enkla samtal. Den befintliga övningen prövar främst skriftliga svar, inte uttal eller lyssnande.","Engelska i vardagen",null]],
-    "NO":[["Natur och undersökningar","Observera växter, djur, årstider och enkla samband i naturen.","Växter",null],["Beskriva upptäckter","Berätta och jämföra vad som händer vid enkla undersökningar.","Växter",null]],
+    "NO":[["Natur och undersökningar","Observera växter, djur, årstider och enkla samband i naturen.","Växter","science-plants"],["Beskriva upptäckter","Berätta och jämföra vad som händer vid enkla undersökningar.","Växter",null]],
     "SO":[["Närmiljö och kartor","Förstå platser, kartor och riktningar i närmiljön.","Kartan","geo-near"],["Tid, samhälle och vardag","Beskriva vardagliga regler, platser och hur människor lever tillsammans.","Geografi",null]]
   },
   5:{
@@ -53,7 +53,7 @@ const subjectGuides={
     "Engelska":[["Förstå engelska","Förstå tydligt tal och enkla texter i bekanta situationer enligt Lgr22 åk 4–6. Den digitala övningen prövar endast skriftlig förståelse.","Engelska – vardagskommunikation","english-communication"],["Uttrycka sig","Uttrycka sig begripligt i bekanta situationer, både muntligt och skriftligt. Muntlig förmåga bedöms inte automatiskt.","Engelska – vardagskommunikation",null]],
     "Geografi":[["Kartor och platser","Använda kartor och geografiska begrepp för att beskriva platser.","Sveriges geografi","geo-sweden"],["Människor, natur och miljö","Resonera om hur natur och samhälle påverkar varandra.","Geografi",null]],
     "Historia":[["Historiska skeenden","Beskriva förändringar och levnadsvillkor under olika tider.","Historia",null],["Källor och tidsbegrepp","Ställa frågor om källor och använda tidsbegrepp.","Historia",null]],
-    "Biologi":[["Begrepp och samband","Beskriva levande organismer, livsmiljöer och ekologiska samband.","Ekosystem",null],["Undersöka naturen","Genomföra enkla undersökningar och beskriva resultat.","Ekosystem",null]]
+    "Biologi":[["Begrepp och samband","Beskriva levande organismer, livsmiljöer och ekologiska samband.","Ekosystem","science-ecosystem"],["Undersöka naturen","Genomföra enkla undersökningar och beskriva resultat.","Ekosystem",null]]
   }
 };
 const extraSubjectGuides={
