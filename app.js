@@ -42,17 +42,36 @@ slöjd:{title:"Från idé till föremål",intro:"I slöjd undersöker man behov,
 let currentTasks=[];
 function randomInt(min,max){return min+Math.floor(Math.random()*(max-min+1))}
 function shuffled(items){const a=items.slice();for(let i=a.length-1;i>0;i--){const j=randomInt(0,i);[a[i],a[j]]=[a[j],a[i]]}return a}
+
+const reviewedExtra={
+  1:{
+    svenska:[["Vilket ord bildar B + O + K?","bok","Ljuda en bokstav i taget.","B + O + K = bok."],["Vad rimmar på katt: hatt eller sol?","hatt","Orden slutar lika.","Katt och hatt rimmar."]],
+    engelska:[["Vad betyder BOOK?","bok","Något man läser.","Book betyder bok."],["Hur säger man 'tack' på engelska?","thank you","Två ord.","Thank you betyder tack."]],
+    biologi:[["Vilken årstid kommer efter hösten?","vinter","Den kallare årstiden.","Efter hösten kommer vintern."],["Vad behöver växter för att växa: ljus eller plast?","ljus","Tänk på solen.","Växter behöver bland annat ljus."]],
+    geografi:[["Vilket väderstreck är motsatt norr?","söder","S på kompassen.","Söder ligger motsatt norr."]],
+    historia:[["Vilken tid kommer först: idag eller förr?","förr","Förr är dåtid.","Förr var före idag."]]
+  },
+  5:{
+    svenska:[["Vad kallas textens viktigaste tanke?","huvudbudskap","Huvud...","Det kan kallas huvudbudskap."],["Vilket ord betyder ungefär samma som 'modig': tapper eller rädd?","tapper","Tänk på någon som vågar.","Tapper betyder ungefär modig."]],
+    engelska:[["Vad betyder 'I am tired'?","jag är trött","Tired = trött.","I am tired betyder jag är trött."],["Hur säger man 'Jag gillar musik' på engelska?","i like music","I like = jag gillar.","I like music betyder jag gillar musik."]],
+    biologi:[["Vad kallas en växt som tillverkar sin egen näring?","producent","En del av näringskedjan.","Växter är producenter."],["Vad kallas samspelet mellan organismer och deras miljö?","ekosystem","Eko...","Det kallas ett ekosystem."]],
+    geografi:[["Vilken stad är Sveriges huvudstad?","stockholm","Sveriges största stad.","Stockholm är huvudstaden."],["Vilken är Sveriges största sjö?","vänern","Den ligger i västra Sverige.","Vänern är störst."]],
+    historia:[["Vad kallas ett föremål som kan berätta om livet förr?","historisk källa","Två ord.","Ett föremål kan vara en historisk källa."]]
+  }
+};
+for(const g of [1,5])for(const [subject,tasks] of Object.entries(reviewedExtra[g]))if(bank[g][subject])bank[g][subject].tasks.push(...tasks);
+let mathLevel=grade===1?"20":"decimal";
 function buildMathTasks(){
  const out=[],seen=new Set(),target=6;
  while(out.length<target){
    let text,answer,hint,explanation;
    if(grade===1){
-     const minus=Math.random()<0.33,a=randomInt(minus?8:3,minus?20:15),b=randomInt(1,minus?Math.min(a-1,9):Math.min(9,20-a));
+     const limit=Number(mathLevel),minus=Math.random()<0.4,a=randomInt(minus?2:1,minus?limit:limit-1),b=randomInt(1,minus?a:limit-a);
      text=a+(minus?" − ":" + ")+b;answer=String(minus?a-b:a+b);
      hint=minus?"Räkna bakåt från "+a+".":"Dela upp talet så att du kommer till en tia.";
      explanation=text+" = "+answer+". Räkna med fingrar, tiokompisar eller en tallinje.";
    }else{
-     const percent=Math.random()<0.24;
+     const percent=mathLevel==="percent"||mathLevel==="mix"&&Math.random()<0.3;
      if(percent){const whole=4*randomInt(5,40);text="Vad är 25 % av "+whole+"?";answer=String(whole/4);hint="25 % är en fjärdedel.";explanation=whole+" ÷ 4 = "+answer+"."}
      else {const a=randomInt(180,750),b=randomInt(25,160),minus=Math.random()<0.4;const fmt=n=>(n/100).toFixed(2).replace(".",",");text=fmt(a)+(minus?" − ":" + ")+fmt(b);answer=fmt(minus?a-b:a+b);hint="Sätt kommatecknen under varandra och räkna hundradelar.";explanation=text+" = "+answer+"."}
    }
@@ -69,8 +88,8 @@ function week(){let now=new Date(),d=new Date(Date.UTC(now.getFullYear(),now.get
 const w=week(),suggest=subjects[((w-42)%subjects.length+subjects.length)%subjects.length][0];
 function shell(body){root.innerHTML='<header><a class="link" href="../">🏠 Start</a><span class="pill">Årskurs '+grade+' · vecka '+w+'</span></header><h1>📚 Lärkompassen</h1>'+body+'<div class="footer">Lärandet bygger på relevanta områden ur Lgr22. Veckoförslagen är egna – inte skolans officiella veckoplan. Inga elevsvar skickas till en server.</div>'}
 function home(){key=null;shell('<div class="card"><h2>Välkommen!</h2><p>Välj ett ämne. Börja med att förstå, prova sedan själv. Fråga om en ledtråd när du behöver.</p><p><span class="pill">Veckans förslag: '+escape(suggest)+'</span></p></div><div class="grid">'+subjects.map(([s,e])=>'<button class="subject" data-sub="'+escape(s)+'">'+e+'<br><strong>'+escape(s.charAt(0).toUpperCase()+s.slice(1))+'</strong></button>').join('')+'</div>');document.querySelectorAll('[data-sub]').forEach(b=>b.onclick=()=>start(b.dataset.sub))}
-function start(s){key=s;index=0;score=0;misses=[];prepareTasks();lesson()}
-function lesson(){const x=bank[grade][key];shell('<nav><button id="back">← Alla ämnen</button></nav><section class="card"><span class="pill">'+escape(key)+'</span><h2>'+escape(x.title)+'</h2><h3>1. Förstå</h3><p>'+escape(x.intro)+'</p><h3>2. Visa mig</h3><p class="feedback">'+escape(x.example)+'</p><p>Nu provar du på egen hand. Du kan få en ledtråd innan du kontrollerar.</p><button class="primary" id="go">Börja öva →</button></section>');document.getElementById("back").onclick=home;document.getElementById("go").onclick=question}
+function start(s){key=s;index=0;score=0;misses=[];lesson()}
+function lesson(){const x=bank[grade][key];shell('<nav><button id="back">← Alla ämnen</button></nav><section class="card"><span class="pill">'+escape(key)+'</span><h2>'+escape(x.title)+'</h2><h3>1. Förstå</h3><p>'+escape(x.intro)+'</p><h3>2. Visa mig</h3><p class="feedback">'+escape(x.example)+'</p><p>Nu provar du på egen hand. Du kan få en ledtråd innan du kontrollerar.</p><button class="primary" id="go">Börja öva →</button></section>');document.getElementById("back").onclick=home;if(key==="matematik"){const section=document.querySelector(".card");const chooser=document.createElement("p");chooser.innerHTML='<label for="mathLevel">Välj nivå (inte styrd av kalenderdatum)</label> <select id="mathLevel">'+(grade===1?'<option value="10">Tal 0–10</option><option value="20">Tal 0–20</option><option value="100">Tal 0–100</option>':'<option value="decimal">Decimaltal</option><option value="percent">Procent</option><option value="mix">Blandat</option>')+'</select>';section.insertBefore(chooser,document.getElementById("go"));document.getElementById("mathLevel").value=mathLevel;document.getElementById("mathLevel").onchange=e=>{mathLevel=e.target.value}}document.getElementById("go").onclick=()=>{prepareTasks();question()}}
 function question(){answered=false;attempts=0;draw()}
 function draw(){const x=bank[grade][key],t=currentTasks[index];shell('<nav><button id="back">← Genomgång</button><span class="muted">Fråga '+(index+1)+' av '+currentTasks.length+'</span></nav><section class="card"><h2>3. Prova själv</h2><p class="question">'+escape(t[0])+'</p><label for="answer">Ditt svar</label><p><input id="answer" autocomplete="off" aria-label="Ditt svar"></p><div id="feedback" aria-live="polite"></div><nav><button id="hint">💡 Ledtråd</button><button id="check" class="primary">Kontrollera</button><button id="next" hidden>Nästa →</button></nav></section>');document.getElementById("back").onclick=lesson;document.getElementById("hint").onclick=()=>message("Ledtråd: "+t[2]);document.getElementById("check").onclick=check;document.getElementById("answer").onkeydown=e=>{if(e.key==="Enter")check()}}
 function message(s){document.getElementById("feedback").innerHTML='<div class="feedback">'+escape(s)+'</div>'}
