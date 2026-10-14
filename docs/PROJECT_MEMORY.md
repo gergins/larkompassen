@@ -85,3 +85,7 @@ Användaren rapporterar att mål->övning fortfarande inte fungerar. Tidigare sy
 
 ## Föräldervalt antal frågor – 2026-10-14
 Föräldraläge → Planering innehåller inställningar för antal frågor per åk (2,5,10,20,30), sparade i lokalStorage `lk-practice-settings-v1`. Veckolektioner och direkt öppnade mållektioner läser inställningen. Matematik inom förberedda lägen skapar varierade aritmetiska uppgifter; andra ämnen använder bara tillgängliga frågor och visar tydligt när antalet är lägre. Ingen synk mellan olika enheter, därför gäller inställningen endast barn som övar i samma browser/device. JavaScript-syntax kontrollerad, browser-E2E återstår. För framtida version: synka via autentiserad backend och säkerställ provbank för samtliga ämnen.
+
+
+## QA 2026-10-14 – Frågeantal och facit
+Bråkgeneratorns nämnare har korrigerats så båda bråkdelarna är äkta bråk. Kontroll för exakt antal unika frågor infördes. `tests/question-count.mjs` kontrollerar matematikgeneratorn för båda årskurserna med 2/5/10/20/30 frågor och verifierar facit/unikhet/talgränser. GitHub Actions-workflow kör nu detta efter statisk navigationstest. **CI-körning och publicerad browser-E2E ej verifierade**; Quality Gate issue #1 hålls öppen. Lokal repository-kloning misslyckades på grund av DNS-begränsning i exekveringsmiljön.
