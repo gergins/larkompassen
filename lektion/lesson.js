@@ -15,15 +15,15 @@ function arithmeticTasks(n){
  for(let i=0;i<n;i++){
    let a,b,text,answer,hint;
    if(grade===1){
-     if(lessonIndex===0){a=2+(i*7)%9;b=1+(i*3)%Math.min(10,20-a);text=a+" + "+b;answer=a+b;hint="Räkna vidare från "+a+" eller använd tiokompisar."}
-     else {a=6+(i*7)%14;b=1+(i*5)%(21-a);text=a+" + "+b;answer=a+b;hint="Försök göra en tia först."}
+     if(lessonIndex===0){a=2+Math.floor(i/10);b=1+i%10;text=a+" + "+b;answer=a+b;hint="Räkna vidare från "+a+" eller använd tiokompisar."}
+     else {a=6+Math.floor(i/10);b=1+i%10;text=a+" + "+b;answer=a+b;hint="Försök göra en tia först."}
    }else if(lessonIndex===0){
      a=100+(i*37)%700;b=10+(i*73)%190;const subtraction=i%3===2;
      text=(a/100).toFixed(2).replace(".",",")+(subtraction?" − ":" + ")+(b/100).toFixed(2).replace(".",",");
      answer=((subtraction?a-b:a+b)/100).toFixed(2).replace(".",",");
      hint="Ställ upp talen med kommatecknen under varandra.";
    }else{
-     const d=4+(i%3)*4,x=1+(i*3)%(d-2),y=1+(i*5)%(d-x);
+     const d=4+Math.floor(i/8)*4,x=1+i%4,y=1+Math.floor(i%8/4);
      text=x+"/"+d+" + "+y+"/"+d;
      const z=x+y;const gcd=(a,b)=>b?gcd(b,a%b):a;const div=gcd(z,d);
      answer=z/div+"/"+(d/div);hint="När nämnarna är lika adderar du bara täljarna.";
