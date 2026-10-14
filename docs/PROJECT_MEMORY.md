@@ -108,3 +108,7 @@ Användaren rapporterade att valet av antal frågor i Föräldraläge inte synte
 - Föräldern väljer belöningstext/tröskel per årskurs och sparar lokalt, därefter väljer årskurs, övning och antal frågor och skapar en delbar övningslänk. `rewardThreshold` och `rewardText` förs över som URL-parametrar och läses av lektionen vid avslutning. Andra enheter behöver öppna just länken; den fasta elevlänken läser inte centrala föräldrainställningar.
 - Länken är inte säker, kan läsas/ändras av mottagaren och får inte innehålla privat information. Föräldern måste godkänna skärmtidsbelöning; inget upplåsningstillstånd ges. Behöver säker backend i framtiden.
 - GitHub commits och JS-syntax verifierade; webbläsar-/CI-verifiering ej bekräftad.
+
+
+## Flera belöningar per barn — 2026-10-14
+Fix: tidigare `lk-rewards-v1` lagrade bara ett objekt per årskurs och varje Spara ersatte det tidigare. Ny flik Belöningar använder `lk-reward-library-v1` som lista av {id,grade,text,threshold}, migrerar äldre enstaka belöningar vid första sparning, visar alla sparade poster, kan ta bort och låter föräldern välja en från dropdown för att skapa delbar länk till rätt matematikkurs. HTML-script versionsuppdaterat till v1.9.0. Javascript syntax verifierad, publicerad E2E kvarstår. Supabase Free är lämplig framtida backend men är inte ansluten.
