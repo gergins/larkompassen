@@ -93,3 +93,11 @@ Bråkgeneratorns nämnare har korrigerats så båda bråkdelarna är äkta bråk
 
 ## Inställningar på olika enheter — 2026-10-14
 Användaren rapporterade att valet av antal frågor i Föräldraläge inte syntes i barnets vy. Orsak: inställningarna ligger i lokalStorage på förälderns enhet; separata enheter delar inte lagring. Implementerat nu: Föräldraläge → Planering → Skicka övning till barnet ger delbara länkar med `ak`, `goal` och `antal` (2/5/10/20/30) till matematiklektionerna. Lektionen prioriterar giltigt frågeantal från URL framför lokal inställning. Den ordinarie elevlänken kan fortfarande visa sitt eget antal beroende på klientens lokala inställning, och originalövningarna ändras inte. Säkert synkad föräldraplanering kräver senare backend eller annan gemensam datakälla. JavaScript-syntax kontrollerad, browser-E2E återstår.
+
+
+## Resultat & misstag samt valfri belöning — 2026-10-14
+- /lektion/ sparar från och med nya genomförda lektioner answerDetails med varje fråga, facit, barnets inskickade försök, sista svaret korrekt/inte korrekt, förstaförsök rätt och antal ledtrådar. Uppmuntrande färdigvy visar antal rätt efter högst två försök samt förstaförsöksrätt.
+- /foralder/ har fjärde fliken Resultat & misstag där samma webbläsares nyregistrerade lektioner kan öppnas frågevis. Äldre lektioner saknar fråga-för-fråga-data och kommer inte att rekonstrueras.
+- /foralder/ -> Planering har valfria belöningar per årskurs: på/av, tröskel 70,80,90,100 procent och förälders eget meddelande (max 180 tecken). Tröskeln utgår från antal **korrekta slutsvar** dividerat med alla frågor, inte antal rätt vid första försöket. Barnet ser gratulation på slutförd lektion endast när tröskeln uppnås.
+- Skärmtidsbelöningar är textliga uppmuntringar som alltid kräver förälderns medgivande; inga appar låses upp. Spara inte privata känsliga uppgifter. Lokal storage/PIN är inte riktig säker autentisering och synkas inte mellan enheter. För cross-device gäller senare backend eller explicit säker konfiguration.
+- GitHub källkod uppdaterad och JS-syntax verifierad. Publicerad browser-E2E och flödestest för belöning/resultat återstår. QA gate öppen.
