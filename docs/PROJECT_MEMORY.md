@@ -35,3 +35,9 @@ P4: Eventuell synkad föräldraöversikt med autentisering och privata backendda
 
 ## Återuppta
 Säg 'Fortsätt Lärkompassen: läs docs/PROJECT_MEMORY.md, kontrollera repo och föreslå nästa lilla verifierbara steg'. Använd ingen påstådd automatisering eller pluginändring utan verifiering.
+
+
+## Ny funktion — Veckokarta, 2026-10-14
+Beslut: användaren vill att båda barnen lätt kan gå tillbaka till veckan före, för två veckor sedan eller en tidigare månad, se nuvarande vecka och tjuvkika på nästa vecka eller månad. Implementerad separat väg: /veckokarta/?ak=1 respektive ?ak=5, med månadsnavigation, ISO-veckonummer, statusetiketter och förslag på ämnen. Ingångslänk tillagd på de befintliga /ak1/ och /ak5/ sidorna. Originalövningarna, frågelogiken och uppgiftsbanken är oförändrade.
+Begränsning: Kalendern innehåller genererade ämnesförslag, inte skolans schema eller unika veckolektioner. 'Öppna ämnesövningarna' går till befintligt ämnesval och spårar inte kalendervecka i lärhistorik. Skolans planering ska inte hävdas utan underlag.
+Nästa kvalitetssteg: en verklig planmodell per vecka med lesson-id, mål, tillgänglighetsstatus ('redo'/'planerad'), och återbesök till samma specifika lektion. Föräldraläges progression och privat svarshistorik är fortfarande planerad, inte implementerad.
