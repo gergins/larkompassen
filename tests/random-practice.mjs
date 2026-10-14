@@ -1,0 +1,12 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import vm from "node:vm";
+const src=fs.readFileSync("app.js","utf8");
+new vm.Script(src);
+assert.match(src,/function buildMathTasks\(\)/);
+assert.match(src,/function shuffled\(items\)/);
+assert.match(src,/currentTasks=key==="matematik"\?buildMathTasks\(\):shuffled\(source\)/);
+assert.match(src,/getElementById\("again"\)\.onclick=\(\)=>start\(key\)/);
+assert.match(src,/score\+' av '\+currentTasks\.length/);
+for(const g of [1,5]) assert.match(fs.readFileSync("ak"+g+"/index.html","utf8"),/app\.js\?v=1\.18\.0/);
+console.log("PASS randomized exercise wiring and correct score count");
