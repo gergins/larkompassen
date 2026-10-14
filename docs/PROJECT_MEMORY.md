@@ -75,3 +75,9 @@ Nästa: verifiera webbläsarflöde på Pages, prova PIN och två barns sessioner
 - Delad lektionsmotor stöder mål-id för ett urval mål utan att veckokartans year/week-länkar ändras. För mål utan matchande övning står det tydligt 'Övning kommer senare'.
 - Observera att kopplingarna är pedagogiskt ungefärliga: exempelvis 'Tal och de fyra räknesätten' öppnar tiokompisar, inte fullständig undervisning i alla fyra räknesätt. En fullständig mål-till-lektion-katalog med täckningsstatus återstår.
 - Källkod och JS-syntax verifierade; publicerad E2E-kontroll återstår.
+
+
+## Kvalitetsansvar och navigationsfel — 2026-10-14
+Användaren rapporterar att mål->övning fortfarande inte fungerar. Tidigare syntaxtest och GitHub-commit var otillräckliga bevis för fungerande publicerad UX. Underhållsansvar: befintlig utvecklings-/verifieringsorkestrering, INTE ny överlappande plugin. Regel: deklarera inte en funktion klar förrän korrekt mål-route, webbläsarflöde och Pages-publicering verifierats; skilj statiska tester från E2E.
+Ändringar: cache-versionerad laromraden/goals.js samt lektion/lesson.js i respektive HTML, statiska testfall under tests/verify.mjs, GitHub Actions-kontroll .github/workflows/verify.yml. Kontrollera CI-resultat och användarens reproduktion; slutför manuell mobil+desktop E2E när browseråtkomst finns. Pages kan inte tillförlitligt avläsas via nuvarande åtkomst. Regressera även Föräldraläge, klassbyte och veckokarta.
+Öppen blockerare: användaren har inte specificerat vilket område/knapp som felar och hur; be om exakt symptom om senaste publiceringen fortfarande inte fungerar.
