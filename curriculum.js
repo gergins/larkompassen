@@ -19,7 +19,7 @@ window.LK_CURRICULUM={
 window.LK_SUBJECTS={
  source:"https://www.skolverket.se/undervisning/grundskolan/laroplan-och-kursplaner-for-grundskolan/kursplaner-for-grundskolan",
  core:["Bild","Biologi","Engelska","Fysik","Geografi","Hem- och konsumentkunskap","Historia","Idrott och hälsa","Kemi","Matematik","Musik","Religionskunskap","Samhällskunskap","Slöjd","Svenska","Teknik"],
- conditional:["Moderna språk","Modersmål","Svenska som andraspråk","Teckenspråk för hörande","Samiska"],
+ conditional:["Moderna språk","Modersmål","Modersmål – finska som nationellt minoritetsspråk","Modersmål – jiddisch som nationellt minoritetsspråk","Modersmål – meänkieli som nationellt minoritetsspråk","Modersmål – romani chib som nationellt minoritetsspråk","Svenska som andraspråk","Teckenspråk för hörande","Samiska","Dans","Judiska studier"],
  groupLabels:["NO","SO"],
  normalize(name){const n=String(name||"").toLocaleLowerCase("sv-SE").trim();return n==="no"?"no":n==="so"?"so":n},
  coursesFor(grade){return this.core.concat(this.conditional).slice().sort((a,b)=>a.localeCompare(b,"sv"))}
