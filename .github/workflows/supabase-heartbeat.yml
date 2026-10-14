@@ -1,20 +1,23 @@
 name: Supabase availability heartbeat
 on:
   schedule:
-    # Spread outside of top-of-hour congestion; best-effort schedules.
-    - cron: "17 6,14,22 * * *"
+    # Once daily, with 0–10 minutes of operational jitter; not a pause-prevention guarantee.
+    - cron: "17 9 * * *"
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   heartbeat:
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Spread scheduled checks to reduce simultaneous request spikes
+        if: github.event_name == 'schedule'
+        run: sleep "$(( RANDOM % 601 ))"
       - name: Query isolated monitoring marker
         env:
           SUPABASE_URL: https://vogkpshnisidtzrkvjzs.supabase.co/
