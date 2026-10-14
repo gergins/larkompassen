@@ -124,3 +124,10 @@ Ny egen flik Matematikmål i Föräldraläge. Åk 1 visar tydlig riktning mot kr
 
 ## Föräldraläge v1.12 Ämnesmål
 Tidigare Matematikmål är nu Ämnesmål med separat ämnes- och årskursväljare. Exempelområden åk 1: Matematik, Svenska, Engelska, NO, SO. Åk 5: Matematik, Svenska, Engelska, Geografi, Historia, Biologi. Vägledning mot centralt innehåll och kriterier i Lgr22:s åk 1–3 respektive 4–6; ENDAST Lärkompassens egna pedagogiska sammanfattningar, ej heltäckande/ordagrant kriteriedokument. Markeringar för extra träning sparas lokalt per ämne/årskurs/område. Endast existerande målövningar får direktlänkar; övriga märks 'kommer senare'. Övningsresultat representeras aldrig som betyg. GitHub/JS-syntax verifierat, publicerad E2E återstår.
+
+
+## v1.13 — Kunskaper, Träningsplan och belöningsutmaning
+- Kunskaper: ämnesfilter inkluderar nu alla ämnen från registrerade ämnesguider för båda årskurserna och historiskt registrerade ämnen, även när barn inte genomfört övningar. Frånvaro av data visas som 'Ingen registrerad ämneshistorik' och aldrig som misslyckande.
+- Ämnesmål: för mål med befintlig relaterad övning finns knappen 'Skapa träningsplan'. Ny flik Träningsplan lagrar lokalt områden per barn och visar fyra coachningssteg: Förstå, Öva, Förklara, Repetera. Endast Öva har en faktiskt implementerad övningslänk; övriga är instruktioner, inte automatiska moment.
+- Barnets lektionsstart: om delad länk innehåller rewardThreshold och rewardText visas 'Vill du anta utmaningen?' med sparad belöning och tröskel innan barnet klickar Börja öva. URL-parametrarna är inte autentiserade/kan ändras; belöning kräver alltid vuxens godkännande.
+- Kod i GitHub och JS-syntax kontrollerade, browser-E2E och CI-resultat kvarstår. Familjeövergripande synk saknas.
