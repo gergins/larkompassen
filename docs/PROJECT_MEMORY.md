@@ -50,3 +50,13 @@ Nästa kvalitetssteg: en verklig planmodell per vecka med lesson-id, mål, tillg
 - Historik visas bara om veckolektioner avslutas på **samma browser och enhet**. Originalövningar spåras ännu inte och inga framsteg synkas. Inga namn behövs. Borttagen localStorage betyder förlorad historik.
 - För riktigt lösenordsskydd på separata enheter krävs autentiserad backend och privat datalagring. Ingen sådan backend har byggts.
 - Föreslagna nästa steg: skapa riktiga veckospecifika lektioner med plan-ID, validera allt facit, testa UI i webbläsare, införa opt-in-export/radering och säker autentisering vid synkning; lämna barnens Original-upplevelse oförändrad.
+
+
+## Föräldraläge v1.3 — 2026-10-14
+Implementerat på /foralder/ med tre interaktiva flikar:
+- Översikt: filtrera åk 1, åk 5 eller båda; denna vecka, denna månad, förra månaden, all registrerad historik; räkna verkliga lokala lektioner, frågor, ledtrådar och svarsförsök. Veckodiagram.
+- Kunskaper: gruppering per ämne och lektion, visning av firstTryCorrect/antal frågor (övningssignal, inte betyg), antal ledtrådar och försök, markerbara uppföljningsområden.
+- Planering: lokala föräldraanteckningar om kommande ämnesövningar, inklusive ta bort. Planerna visas ännu INTE hos barnet och schemaläggs inte automatiskt.
+- Behåller lokal PIN-kod och visar integritets- och säkerhetsbegränsningar. Inga privata data skickas till publikt GitHub. Test av JavaScript-syntax lyckades, men publicerad browser-E2E och funktionstest återstår.
+- Ingen uppdatering av befintliga Original-övningar. Ingen synk mellan enheter, lösenordsåterställning eller riktig serverautentisering. E-postinloggning är beslutad som senare version.
+Nästa: verifiera webbläsarflöde på Pages, prova PIN och två barns sessioner, event-schema för ledtråd per fråga, och förälders möjlighet att dela tilldelningar till barnens enheter när säker autentisering införts.
