@@ -18,3 +18,4 @@ jobs:
           node tests/verify.mjs
           node tests/question-count.mjs
           node tests/subjects.mjs
+          node tests/random-practice.mjs
