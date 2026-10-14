@@ -120,3 +120,7 @@ Tidigare visade Planering och Kunskaper innehåll för både åk 1 och åk 5 om 
 
 ## Matematikmål och bedömningsorientering v1.11 – 2026-10-14
 Ny egen flik Matematikmål i Föräldraläge. Åk 1 visar tydlig riktning mot kriterierna för slutet av åk 3, åk 5 riktning mot betygskriterierna för slutet av åk 6. Pedagogiskt sammanfattade områden: begrepp, metoder, problemlösning, resonemang och kommunikation (geometri/mönster särskilt åk 1). Föreslår relaterade övningar och ger förälder lokala markeringar 'extra träning' utan att kalla det diagnos eller betyg. Relaterade första-försöksresultat märks uttryckligen som partiell övningssignal; resonemang och förståelse bedöms inte automatiskt. Länk till Skolverkets officiella matematik-kursplan. Ej fullständig matris eller personlig skolbedömning. Kod + syntax verifierade; webbläsartest återstår.
+
+
+## Föräldraläge v1.12 Ämnesmål
+Tidigare Matematikmål är nu Ämnesmål med separat ämnes- och årskursväljare. Exempelområden åk 1: Matematik, Svenska, Engelska, NO, SO. Åk 5: Matematik, Svenska, Engelska, Geografi, Historia, Biologi. Vägledning mot centralt innehåll och kriterier i Lgr22:s åk 1–3 respektive 4–6; ENDAST Lärkompassens egna pedagogiska sammanfattningar, ej heltäckande/ordagrant kriteriedokument. Markeringar för extra träning sparas lokalt per ämne/årskurs/område. Endast existerande målövningar får direktlänkar; övriga märks 'kommer senare'. Övningsresultat representeras aldrig som betyg. GitHub/JS-syntax verifierat, publicerad E2E återstår.
