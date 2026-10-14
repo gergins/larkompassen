@@ -15,3 +15,11 @@ assert.ok(js.includes("subjects=LK_SUBJECTS.coursesFor(g)"),"Learning-goals must
 assert.ok(js.includes("Ingen färdig övning i ämnet"),"Unimplemented exercises must be signposted");
 assert.ok(js.includes("Ämnet finns i kursplaneregistret"),"Unreviewed goal descriptions must not be invented");
 console.log("PASS parent dropdown catalogue and missing-content safeguards");
+
+const lesson=read("lektion/lesson.js");new vm.Script(lesson);
+assert.ok(lesson.includes('"english-everyday":5'),"Grade 1 English goal must resolve");
+assert.ok(lesson.includes('"english-communication":5'),"Grade 5 English goal must resolve");
+assert.ok(lesson.includes('title:"Engelska i vardagen"'),"Grade 1 English lesson missing");
+assert.ok(lesson.includes('title:"Engelska – vardagskommunikation"'),"Grade 5 English lesson missing");
+assert.ok(js.includes("verifiedSubjectSources"),"Curriculum citations missing");
+console.log("PASS source-linked English/Bild goals and real English practice");
