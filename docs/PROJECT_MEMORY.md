@@ -116,3 +116,7 @@ Fix: tidigare `lk-rewards-v1` lagrade bara ett objekt per årskurs och varje Spa
 
 ## Föräldraläge v1.10 — årskursspecifik Lgr22-orientering
 Tidigare visade Planering och Kunskaper innehåll för både åk 1 och åk 5 om globala filtret stod på 'Båda årskurserna'. Nu finns en separat väljare för åk 1 respektive åk 5 inne i läroplanssektionen. Åk 1 visar endast Lärkompassens utvalda innehåll för Lgr22 åk 1–3, åk 5 för Lgr22 åk 4–6. Globalt val av enskild årskurs förinställer denna väljare. Felvisande länk med bara matematik som källa ersatt med allmän Lgr22-länk. Det är INTE Skolverkets detaljerade läroplan per enskild årskurs, och hela kursplanen är ännu inte implementerad. GitHub-kod/JS-syntax kontrollerad; webbläsartest återstår.
+
+
+## Matematikmål och bedömningsorientering v1.11 – 2026-10-14
+Ny egen flik Matematikmål i Föräldraläge. Åk 1 visar tydlig riktning mot kriterierna för slutet av åk 3, åk 5 riktning mot betygskriterierna för slutet av åk 6. Pedagogiskt sammanfattade områden: begrepp, metoder, problemlösning, resonemang och kommunikation (geometri/mönster särskilt åk 1). Föreslår relaterade övningar och ger förälder lokala markeringar 'extra träning' utan att kalla det diagnos eller betyg. Relaterade första-försöksresultat märks uttryckligen som partiell övningssignal; resonemang och förståelse bedöms inte automatiskt. Länk till Skolverkets officiella matematik-kursplan. Ej fullständig matris eller personlig skolbedömning. Kod + syntax verifierade; webbläsartest återstår.
