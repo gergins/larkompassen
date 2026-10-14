@@ -89,3 +89,7 @@ Föräldraläge → Planering innehåller inställningar för antal frågor per 
 
 ## QA 2026-10-14 – Frågeantal och facit
 Bråkgeneratorns nämnare har korrigerats så båda bråkdelarna är äkta bråk. Kontroll för exakt antal unika frågor infördes. `tests/question-count.mjs` kontrollerar matematikgeneratorn för båda årskurserna med 2/5/10/20/30 frågor och verifierar facit/unikhet/talgränser. GitHub Actions-workflow kör nu detta efter statisk navigationstest. **CI-körning och publicerad browser-E2E ej verifierade**; Quality Gate issue #1 hålls öppen. Lokal repository-kloning misslyckades på grund av DNS-begränsning i exekveringsmiljön.
+
+
+## Inställningar på olika enheter — 2026-10-14
+Användaren rapporterade att valet av antal frågor i Föräldraläge inte syntes i barnets vy. Orsak: inställningarna ligger i lokalStorage på förälderns enhet; separata enheter delar inte lagring. Implementerat nu: Föräldraläge → Planering → Skicka övning till barnet ger delbara länkar med `ak`, `goal` och `antal` (2/5/10/20/30) till matematiklektionerna. Lektionen prioriterar giltigt frågeantal från URL framför lokal inställning. Den ordinarie elevlänken kan fortfarande visa sitt eget antal beroende på klientens lokala inställning, och originalövningarna ändras inte. Säkert synkad föräldraplanering kräver senare backend eller annan gemensam datakälla. JavaScript-syntax kontrollerad, browser-E2E återstår.
