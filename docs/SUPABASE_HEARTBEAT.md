@@ -1,18 +1,11 @@
-# Supabase heartbeat (not yet enabled)
-This is an optional, independent database availability/activity check. It does **not** send, alter or fabricate learning results and does **not** collect children's information.
+# Supabase heartbeat — configured
 
-## Activation – only after a Supabase project exists
-1. Open the Supabase SQL Editor and review/run `supabase/heartbeat.sql`. It creates a single harmless marker with read-only anonymous access under Row Level Security (RLS).
-2. In the **GitHub repository** settings, add Actions secrets `SUPABASE_URL` (for example `https://project-ref.supabase.co/`) and `SUPABASE_ANON_KEY` (the project publishable / legacy anon key that is accepted by the Data API). Never store the **service_role** key or any private administrator key in this bot.
-3. Run the GitHub Actions workflow **Supabase availability heartbeat** manually, verify it says HEALTHY. Only then expect scheduled checks three times per day. Missing secrets makes it print NOT_CONFIGURED and send **no** requests.
-4. Make sure the Actions workflow remains enabled. GitHub may delay or drop scheduled runs, and public-repository schedules may be disabled after 60 days without repository activity. Observe failures in the Actions tab; configure repository notifications if desired.
+The public Supabase project `vogkpshnisidtzrkvjzs` has a dedicated `public.service_heartbeat` table containing the single non-personal marker `larkompassen`. RLS is enabled; anonymous access is restricted to reading the harmless id column. A read-only SQL test under the `anon` role returned the marker successfully.
 
-The check performs a **SELECT** against `public.service_heartbeat`, returns the constant `larkompassen`, and does not read or write any student tables. One marker is safe to expose to anonymous queries, but nothing personal must ever be stored in it.
+GitHub Actions workflow: [Supabase availability heartbeat](../.github/workflows/supabase-heartbeat.yml). It is scheduled for 06:17, 14:17, and 22:17 **UTC** every day, and may also be dispatched manually from GitHub's Actions tab. The workflow uses the Supabase **publishable (public)** client key and public project URL. This key is not a secret; it must never be replaced with `service_role`, a secret API key, or database credentials. The bot only SELECTs the constant id, and does not interact with student results. Missing configuration fails the check; an unreachable backend fails the check.
 
-Supabase may count API reads as database activity; these requests are **not a guarantee** against a Free Plan inactivity pause. They cannot revive an already-paused project; manually resume from the Supabase dashboard. Supabase Pro is the supported way to ensure no inactivity pausing.
+**Verification:** The table, RLS, marker, and `anon` read passed verification in Supabase. The GitHub workflow configuration was committed. An actual successful GitHub Actions execution and REST response have **not yet been confirmed**. Check [Actions runs](https://github.com/gergins/larkompassen/actions/workflows/supabase-heartbeat.yml) and use Run workflow to perform the first end-to-end check.
 
-This heartbeat is **not** a synchronization service. Cross-device learning data sync requires a separate, authenticated design with guardian-owned profiles, safe RLS, queues for offline writes, and proper tests.
+**Limitations:** Supabase Free inactivity-pausing rules can change, and a heartbeat does not guarantee immunity. GitHub schedules can be delayed, skipped, or disabled after prolonged inactivity in a public repo. A paused database may need manual resumption. This is *not* student-device synchronization; that requires a separate authenticated backend design and privacy/security review.
 
-References:
-- https://supabase.com/docs/guides/platform/free-project-pausing
-- https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
+Official references: https://supabase.com/docs/guides/platform/free-project-pausing and https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
