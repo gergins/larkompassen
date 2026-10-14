@@ -17,6 +17,6 @@ jobs:
           node-version: '22'
       - name: Query isolated monitoring marker
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_URL: https://vogkpshnisidtzrkvjzs.supabase.co/
+          SUPABASE_ANON_KEY: sb_publishable_0bgtbTbW2-bNr1pLDBa02g_cQprhQdW
         run: node scripts/supabase-heartbeat.mjs
