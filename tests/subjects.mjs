@@ -1,0 +1,17 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import vm from "node:vm";
+const read = p => fs.readFileSync(p,"utf8");
+const context={window:{}};vm.createContext(context);
+vm.runInContext(read("curriculum.js"),context);
+const canonical=context.window.LK_SUBJECTS;
+assert.ok(canonical&&Array.isArray(canonical.core));
+for (const needed of ["Matematik","Svenska","Engelska","Bild","Musik","Slöjd","Teknik","Fysik","Kemi","Historia","Geografi","Religionskunskap","Samhällskunskap","Idrott och hälsa"]) assert.ok(canonical.coursesFor(5).includes(needed),needed+" missing");
+assert.equal(new Set(canonical.coursesFor(1)).size,canonical.coursesFor(1).length,"Duplicate subjects");
+const js=read("foralder/parent.js");new vm.Script(js);
+assert.ok(js.includes("LK_SUBJECTS.coursesFor(curriculumGrade)"),"Knowledge must use shared catalogue");
+assert.ok(js.includes("LK_SUBJECTS.coursesFor(grade)"),"Planning must use shared catalogue");
+assert.ok(js.includes("subjects=LK_SUBJECTS.coursesFor(g)"),"Learning-goals must use shared catalogue");
+assert.ok(js.includes("Ingen färdig övning i ämnet"),"Unimplemented exercises must be signposted");
+assert.ok(js.includes("Ämnet finns i kursplaneregistret"),"Unreviewed goal descriptions must not be invented");
+console.log("PASS parent dropdown catalogue and missing-content safeguards");
