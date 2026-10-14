@@ -23,3 +23,8 @@ assert.ok(lesson.includes('title:"Engelska i vardagen"'),"Grade 1 English lesson
 assert.ok(lesson.includes('title:"Engelska – vardagskommunikation"'),"Grade 5 English lesson missing");
 assert.ok(js.includes("verifiedSubjectSources"),"Curriculum citations missing");
 console.log("PASS source-linked English/Bild goals and real English practice");
+
+for(const g of [1,5]){const home=read("ak"+g+"/index.html");assert.ok(home.includes("english-"+(g===1?"everyday":"communication")),"English practice missing from child entry");assert.ok(home.includes("science-"+(g===1?"plants":"ecosystem")),"Biology practice missing from child entry");}
+assert.ok(lesson.includes('"science-plants":3'),"Grade 1 science goal missing");
+assert.ok(lesson.includes('"science-ecosystem":4'),"Grade 5 science goal missing");
+console.log("PASS child navigation for English, Swedish, Geography, Biology goals");
