@@ -112,3 +112,7 @@ Användaren rapporterade att valet av antal frågor i Föräldraläge inte synte
 
 ## Flera belöningar per barn — 2026-10-14
 Fix: tidigare `lk-rewards-v1` lagrade bara ett objekt per årskurs och varje Spara ersatte det tidigare. Ny flik Belöningar använder `lk-reward-library-v1` som lista av {id,grade,text,threshold}, migrerar äldre enstaka belöningar vid första sparning, visar alla sparade poster, kan ta bort och låter föräldern välja en från dropdown för att skapa delbar länk till rätt matematikkurs. HTML-script versionsuppdaterat till v1.9.0. Javascript syntax verifierad, publicerad E2E kvarstår. Supabase Free är lämplig framtida backend men är inte ansluten.
+
+
+## Föräldraläge v1.10 — årskursspecifik Lgr22-orientering
+Tidigare visade Planering och Kunskaper innehåll för både åk 1 och åk 5 om globala filtret stod på 'Båda årskurserna'. Nu finns en separat väljare för åk 1 respektive åk 5 inne i läroplanssektionen. Åk 1 visar endast Lärkompassens utvalda innehåll för Lgr22 åk 1–3, åk 5 för Lgr22 åk 4–6. Globalt val av enskild årskurs förinställer denna väljare. Felvisande länk med bara matematik som källa ersatt med allmän Lgr22-länk. Det är INTE Skolverkets detaljerade läroplan per enskild årskurs, och hela kursplanen är ännu inte implementerad. GitHub-kod/JS-syntax kontrollerad; webbläsartest återstår.
