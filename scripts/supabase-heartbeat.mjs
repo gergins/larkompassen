@@ -2,8 +2,8 @@
 const url=process.env.SUPABASE_URL?.trim();
 const key=process.env.SUPABASE_ANON_KEY?.trim();
 if (!url || !key) {
-  console.log("NOT_CONFIGURED: Set SUPABASE_URL and SUPABASE_ANON_KEY repository secrets. No request sent.");
-  process.exit(0);
+  console.log("NOT_CONFIGURED: Missing required Supabase public endpoint configuration. No request sent.");
+  process.exit(1);
 }
 let base;
 try {
