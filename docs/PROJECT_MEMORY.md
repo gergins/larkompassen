@@ -131,3 +131,8 @@ Tidigare Matematikmål är nu Ämnesmål med separat ämnes- och årskursväljar
 - Ämnesmål: för mål med befintlig relaterad övning finns knappen 'Skapa träningsplan'. Ny flik Träningsplan lagrar lokalt områden per barn och visar fyra coachningssteg: Förstå, Öva, Förklara, Repetera. Endast Öva har en faktiskt implementerad övningslänk; övriga är instruktioner, inte automatiska moment.
 - Barnets lektionsstart: om delad länk innehåller rewardThreshold och rewardText visas 'Vill du anta utmaningen?' med sparad belöning och tröskel innan barnet klickar Börja öva. URL-parametrarna är inte autentiserade/kan ändras; belöning kräver alltid vuxens godkännande.
 - Kod i GitHub och JS-syntax kontrollerade, browser-E2E och CI-resultat kvarstår. Familjeövergripande synk saknas.
+
+
+## v1.14 – läroplansansvar och gemensamt ämnesregister (2026-10-14)
+Jämförelse mot Skolverkets Lgr22: tidigare hade Kunskaper, Planering och Ämnesmål olika och ofullständiga ämneslistor. Ett gemensamt ämnesregister LK_SUBJECTS ligger nu i curriculum.js och används av alla tre föräldravisningar. Finns ingen färdig övning respektive ingen granskad målsammanfattning visas detta tydligt; inget falskt betyg eller felaktig bedömningsstatus. Katalogen skiljer ordinarie skolämnen, vissa valbara/särskilda ämnen och gruppnamn NO/SO; exakt ämnesutbud varierar mellan elever. Fullständiga kursplansmål och samtliga specialämnen återstår att inventera.
+Test tests/subjects.mjs har lagts till och kopplats till GitHub Actions. CI-grönt och publicerad webbläsar-E2E är ännu inte verifierade. Ämnes-/läroplansansvaret registrerat i GitHub issue #2 och release-QA ägs av befintlig quality gate (issue #1).
