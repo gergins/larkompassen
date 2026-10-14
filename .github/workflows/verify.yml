@@ -17,3 +17,4 @@ jobs:
         run: |
           node tests/verify.mjs
           node tests/question-count.mjs
+          node tests/subjects.mjs
