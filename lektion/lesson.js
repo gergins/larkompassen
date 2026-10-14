@@ -23,13 +23,14 @@ function arithmeticTasks(n){
      answer=((subtraction?a-b:a+b)/100).toFixed(2).replace(".",",");
      hint="Ställ upp talen med kommatecknen under varandra.";
    }else{
-     const d=4+Math.floor(i/8)*4,x=1+i%4,y=1+Math.floor(i%8/4);
+     const d=8+Math.floor(i/8)*4,x=1+i%4,y=1+Math.floor(i%8/4);
      text=x+"/"+d+" + "+y+"/"+d;
      const z=x+y;const gcd=(a,b)=>b?gcd(b,a%b):a;const div=gcd(z,d);
      answer=z/div+"/"+(d/div);hint="När nämnarna är lika adderar du bara täljarna.";
    }
    if(seen.has(text)){continue}seen.add(text);out.push([text,String(answer),hint])
  }
+ if(out.length!==n)throw new Error("Otillräckligt många unika matematikfrågor");
  return out;
 }
 const mathGenerator=lesson.s==="Matematik"&&((grade===1&&[0,2].includes(lessonIndex))||(grade===5&&[0,3].includes(lessonIndex)));
