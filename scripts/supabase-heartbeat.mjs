@@ -8,7 +8,7 @@ if (!url || !key) {
 let base;
 try {
   base=new URL(url);
-  if(base.protocol!=="https:" || !/^[a-z0-9-]+\\.supabase\\.co$/.test(base.hostname) || base.pathname!=="/") {
+  if(base.protocol!=="https:" || !/^[a-z0-9-]+\.supabase\.co$/.test(base.hostname) || base.pathname!=="/") {
     throw new Error("Invalid project URL");
   }
 } catch {
