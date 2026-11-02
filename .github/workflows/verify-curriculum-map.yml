@@ -1,0 +1,23 @@
+name: Verify Lgr22 curriculum mapping
+on:
+  pull_request:
+    paths:
+      - 'curriculum-map.js'
+      - 'curriculum.js'
+      - 'tests/curriculum-map.test.cjs'
+      - '.github/workflows/verify-curriculum-map.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check mapping syntax
+        run: node --check curriculum-map.js
+      - name: Verify mapping schema and goal references
+        run: node --test tests/curriculum-map.test.cjs
