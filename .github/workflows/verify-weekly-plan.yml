@@ -1,0 +1,22 @@
+name: Verify weekly curriculum plan
+on:
+  pull_request:
+    paths:
+      - 'weekly-plan.js'
+      - 'veckokarta/**'
+      - 'tests/weekly-plan.test.cjs'
+      - '.github/workflows/verify-weekly-plan.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check weekly-plan.js
+      - run: node --check veckokarta/timeline.js
+      - run: node --test tests/weekly-plan.test.cjs
