@@ -18,3 +18,20 @@ test("two grade-one children keep separate weekly notes and lesson sessions",asy
  await page.goto(base+"/lektion/?ak=1&child="+encodeURIComponent(a.id));await expect(page.locator("#lesson")).not.toBeEmpty();
  await page.goto(base+"/ak1/?child="+encodeURIComponent(b.id));await expect(page.locator("main#app")).not.toBeEmpty();
 });
+
+
+test("completed lessons are saved only for the selected child",async({page})=>{
+ await page.goto(base+"/");await page.evaluate(()=>localStorage.setItem("lk-family-profiles-v1",JSON.stringify([{id:"child-a",name:"Barn A",grade:"1"},{id:"child-b",name:"Barn B",grade:"1"}])));
+ async function complete(id,answer){
+  await page.goto(base+"/lektion/?ak=1&goal=swedish-reading&child="+id+"&antal=2");
+  await page.locator("#start").click();
+  for(let i=0;i<2;i++){await page.locator("#answer").fill(answer);await page.locator("#check").click();if(await page.locator("#next").isHidden()){await page.locator("#check").click()}await page.locator("#next").click()}
+  await expect(page.getByText("Resultatet har sparats på den här enheten.")).toBeVisible();
+ }
+ await complete("child-a","mat");
+ let a=await page.evaluate(()=>JSON.parse(localStorage.getItem("lk-child-sessions-v1:child-a")||"[]"));expect(a).toHaveLength(1);
+ expect(await page.evaluate(()=>localStorage.getItem("lk-child-sessions-v1:child-b"))).toBeNull();
+ await complete("child-b","mat");
+ const result=await page.evaluate(()=>({a:JSON.parse(localStorage.getItem("lk-child-sessions-v1:child-a")||"[]"),b:JSON.parse(localStorage.getItem("lk-child-sessions-v1:child-b")||"[]"),shared:localStorage.getItem("larkompassen-v1-sessions")}));
+ expect(result.a).toHaveLength(1);expect(result.b).toHaveLength(1);expect(result.shared).toBeNull();
+});
