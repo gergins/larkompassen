@@ -6,3 +6,6 @@ test("grade-only mode remains available",()=>{const w=fs.readFileSync("veckokart
 
 test("child progress storage is separate for math and lessons",()=>{const a=fs.readFileSync("app.js","utf8"),l=fs.readFileSync("lektion/lesson.js","utf8");assert.match(a,/lk-child-math-progress-v1:/);assert.match(l,/lk-child-sessions-v1:/);assert.match(a,/Number\(p\.grade\)===grade/);assert.match(l,/Number\(p\.grade\)===grade/)});
 test("grade portals preserve child selection on lesson links",()=>{for(const grade of [1,5]){const h=fs.readFileSync("ak"+grade+"/index.html","utf8");assert.match(h,/searchParams\.set\("child",child\)/)}});
+
+test("lesson navigation carries child ID from weekly calendar",()=>{const w=fs.readFileSync("veckokarta/timeline.js","utf8");assert.match(w,/encodeURIComponent\(childProfile\.id\)/);assert.match(w,/&child=/)});
+test("invalid child IDs do not select a child for progress",()=>{for(const file of ["app.js","lektion/lesson.js"]){const src=fs.readFileSync(file,"utf8");assert.match(src,/lk-family-profiles-v1/);assert.match(src,/Number\(p\.grade\)===grade/);assert.match(src,/\|\|null/)}});
