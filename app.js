@@ -1,6 +1,6 @@
 (()=>{
 "use strict";
-const grade=Number(document.body.dataset.grade);
+const grade=Number(document.body.dataset.grade);const childId=new URLSearchParams(location.search).get("child");let activeChild=null;try{const profiles=JSON.parse(localStorage.getItem("lk-family-profiles-v1")||"[]");if(Array.isArray(profiles))activeChild=profiles.find(p=>p&&p.id===childId&&Number(p.grade)===grade)||null}catch(_){}
 const subjects=[["matematik","🔢"],["svenska","📖"],["engelska","🇬🇧"],["geografi","🌍"],["historia","🏛️"],["samhällskunskap","🏘️"],["religionskunskap","🕊️"],["biologi","🌱"],["fysik","🔭"],["kemi","🧪"],["teknik","⚙️"],["bild","🎨"],["musik","🎵"],["idrott och hälsa","⚽"],["slöjd","🧵"]];
 const bank={
 1:{
@@ -62,7 +62,7 @@ const reviewedExtra={
 for(const g of [1,5])for(const [subject,tasks] of Object.entries(reviewedExtra[g]))if(bank[g][subject])bank[g][subject].tasks.push(...tasks);
 let mathLevel=grade===1?"20":"decimal";
 
-const progressKey="lk-original-math-progress-v1";
+const progressKey=activeChild?"lk-child-math-progress-v1:"+encodeURIComponent(activeChild.id):"lk-original-math-progress-v1";
 function mathHistory(){try{const rows=JSON.parse(localStorage.getItem(progressKey)||"[]");return Array.isArray(rows)?rows:[]}catch{return []}}
 function mathSuggestion(){if(grade!==1)return {level:mathLevel,text:"Decimaltal och procent är olika områden. Välj vad du vill träna, och växla gärna när ett område känns tryggt."};const order=["10","20","100"],recent=mathHistory().filter(x=>x.grade===grade&&x.level===mathLevel).slice(-3);if(recent.length<3)return {level:mathLevel,text:"Öva minst tre omgångar på samma nivå för en personlig rekommendation."};const high=recent.every(x=>x.total>=5&&x.correct/x.total>=0.8),low=recent.every(x=>x.correct/x.total<=0.5),i=order.indexOf(mathLevel);if(high&&i<2)return {level:order[i+1],text:"Du har klarat minst 80 % tre gånger på den här nivån. Prova gärna nästa nivå!"};if(low&&i>0)return {level:order[i-1],text:"Det kan hjälpa att öva grunderna lite till. Prova gärna en lättare nivå."};return {level:mathLevel,text:"Fortsätt gärna på den här nivån och öva på det som var svårt."}}
 
