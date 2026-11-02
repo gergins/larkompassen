@@ -1,0 +1,20 @@
+name: Verify Lgr22 coverage index
+on:
+  pull_request:
+    paths:
+      - 'lgr22-coverage.js'
+      - 'tests/lgr22-coverage.test.cjs'
+      - '.github/workflows/verify-lgr22-coverage.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check lgr22-coverage.js
+      - run: node --test tests/lgr22-coverage.test.cjs
