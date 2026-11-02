@@ -1,9 +1,8 @@
-# Weekly learning progression v1
+# Weekly learning progression v2
 
-- Suggested topic progression for grades 1 and 5; topics link to stable IDs in the existing learning-goals catalogue.
-- Calendar week number selects a repeating starter sequence; **not** a full annual or school-term plan. Holiday, term, and school-specific timetables are **not yet supported**.
-- Parents may enter the school's actual topic for a week. Stored only in localStorage, keyed by grade/year/week; **not yet per child** and not synced.
-- The interface explicitly distinguishes Lärkompassen's suggested topic from a parent-entered school plan.
-- A week lesson link currently opens the existing generic lesson route; it does not guarantee a matching lesson for the displayed topic.
-- Future: per-child storage, Swedish school terms/holidays by municipality, non-repeating year plan, goal-specific lesson links, source-verified curriculum coverage and accessibility tests.
-- Never label suggested topics as Skolverket's weekly requirements.
+- Forty **explicit suggested instructional slots** for each of grades 1 and 5, grouped into introduction, practice, application, deepening and review.
+- Each slot references an existing curriculum goal. Reusing goals across slots is deliberate; **40 slots does not mean 40 distinct Lgr22 requirements or complete coverage**.
+- ISO weeks 34–52 map to slots 1–19; weeks 1–21 map to slots 20–40. Other weeks show no suggested lesson. This is a placeholder, **not a verified Swedish term/holiday calendar**; holidays and school-specific term starts vary.
+- Parent school-plan notes are browser-local, keyed by grade and ISO year/week, **not child-specific**. Multiple children in the same grade share the note until the family-profile branch is integrated.
+- Generic lesson links do not guarantee a matching lesson. Do not call this a verified full curriculum, school plan or completed exercises.
+- Next: configurable term dates/holidays, per-child isolation, complete source-checked Lgr22 inventory, lesson-to-goal mapping and browser interaction tests.
