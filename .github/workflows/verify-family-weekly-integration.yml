@@ -1,0 +1,24 @@
+name: Verify family and weekly integration
+on:
+  pull_request:
+    paths:
+      - 'family.js'
+      - 'index.html'
+      - 'veckokarta/**'
+      - 'weekly-plan.js'
+      - 'tests/**'
+      - '.github/workflows/verify-family-weekly-integration.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check family.js
+      - run: node --check veckokarta/timeline.js
+      - run: node --test tests/family.test.cjs tests/weekly-plan.test.cjs tests/family-weekly-integration.test.cjs
