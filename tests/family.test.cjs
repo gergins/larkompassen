@@ -24,6 +24,6 @@ test("limits profile count",()=>{const a=setup();for(let i=0;i<13;i++)a.submit("
 test("ignores malformed saved data",()=>{const a=setup("not-json");assert.equal(a.ids.profiles.children.length,1)});
 test("shows storage failures instead of claiming success",()=>{const a=setup("[]",true);a.submit("Barn");assert.match(a.ids["family-notice"].textContent,/inte att spara/)});
 test("renders names as text and does not interpolate markup",()=>{const a=setup();a.submit("<img src=x onerror=alert(1)>");assert.match(a.ids.profiles.children[0].children[0].textContent,/<img/);assert.equal(a.ids.profiles.children[0].children.length,2)});
-test("routes grade 5 to its existing portal",()=>{const a=setup();a.submit("Barn","5");assert.equal(a.ids.profiles.children[0].children[1].children[0].href,"./ak5/")});
+test("routes grade 5 to its existing portal",()=>{const a=setup();a.submit("Barn","5");assert.match(a.ids.profiles.children[0].children[1].children[0].href,/^\.\/ak5\/\?child=/)});
 
 test("profile weekly links retain distinct child identifiers",()=>{const a=setup();a.submit("Barn A");a.submit("Barn B");const links=a.ids.profiles.children.map(x=>x.children[1].children[1].href);assert.notEqual(links[0],links[1]);assert.ok(links.every(x=>x.startsWith("./veckokarta/?child=")))});
