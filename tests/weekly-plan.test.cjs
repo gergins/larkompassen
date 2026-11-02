@@ -2,9 +2,9 @@
 const fs=require("node:fs"),vm=require("node:vm"),assert=require("node:assert/strict"),test=require("node:test");
 const ctx={window:{}};vm.runInNewContext(fs.readFileSync("weekly-plan.js","utf8"),ctx);
 const p=ctx.window.LK_WEEKLY_PLAN;
-test("suggestions never claim to be official weekly requirements",()=>{assert.equal(p.officialWeeklySchedule,false);assert.match(p.notes,/not a national week-by-week timetable/)});
+test("suggestions never claim to be official weekly requirements",()=>{assert.equal(p.officialWeeklySchedule,false);assert.match(p.notes,/not a verified school timetable/)});
 test("weekly topics link to existing curriculum goals",()=>{const c={window:{}};vm.runInNewContext(fs.readFileSync("curriculum.js","utf8"),c);for(const [grade,topics] of Object.entries(p.grades)){assert.ok(topics.length);const ids=new Set(c.window.LK_CURRICULUM.grades[grade].map(x=>x.id));for(const t of topics){assert.ok(ids.has(t.goalId),t.goalId);assert.ok(t.subject&&t.topic)}}});
 test("weekly UI distinguishes school plans and avoids dynamic HTML in storage values",()=>{const src=fs.readFileSync("veckokarta/timeline.js","utf8");assert.match(src,/esc\(school\)/);assert.match(src,/lk-school-week-v1:/);assert.match(src,/Skolans plan/);assert.match(src,/Lärkompassens förslag/);assert.match(src,/localStorage\.setItem/)});
 
 test("weekly page loads plan before timeline and provides grade controls",()=>{const html=fs.readFileSync("veckokarta/index.html","utf8");assert.ok(html.indexOf('src="../weekly-plan.js"')>=0);assert.ok(html.indexOf('src="../weekly-plan.js"')<html.indexOf('src="./timeline.js"'));for(const id of ["grade","weeks","prev","next","now","month","child"])assert.match(html,new RegExp('id="'+id+'"'))});
-test("the weekly plan is still a repeating starter, not an annual curriculum",()=>{for(const topics of Object.values(p.grades)){assert.equal(topics.length,40);assert.equal(new Set(topics.map(t=>t.slot)).size,40)}assert.equal(p.officialWeeklySchedule,false)});
+test("the weekly plan has 40 slots but is not a verified annual curriculum",()=>{for(const topics of Object.values(p.grades)){assert.equal(topics.length,40);assert.equal(new Set(topics.map(t=>t.slot)).size,40)}assert.equal(p.officialWeeklySchedule,false)});
